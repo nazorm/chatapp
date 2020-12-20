@@ -18,7 +18,7 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1>prochat</h1>
+				<h3>prochat</h3>
 				<SignOut />
 			</header>
 			<section>{user ? <ChatRoom /> : <SignIn />}</section>

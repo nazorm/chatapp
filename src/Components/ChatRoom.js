@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css'
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -11,7 +12,7 @@ const firestore = firebase.firestore();
 
 const ChatRoom = () => {
 	return (
-		<div>
+		<div className = 'chat-room'>
 			<h1>Chat Room</h1>
 		</div>
 	);
