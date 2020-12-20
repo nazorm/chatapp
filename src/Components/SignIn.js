@@ -19,7 +19,7 @@ firebase.initializeApp({
 });
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+
 
 const SignIn = () => {
 	const signInWithGoogle = () => {

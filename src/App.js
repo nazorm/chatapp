@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react'
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -12,18 +12,39 @@ import ChatRoom from './components/ChatRoom';
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-function App() {
-	const [user] = useAuthState(auth);
+class  App extends React.Component{
+	constructor(){
+		super()
+		this.state ={
+			authenticated: false
+		}
+	}
 
+componentDidMount(){
+	auth.onAuthStateChanged((user)=>{
+		if (user){
+			this.setState({
+				authenticated :true
+			})
+		}
+	})
+}
+
+
+
+
+render(){
 	return (
 		<div className="App">
 			<header>
 				<h3>prochat</h3>
 				<SignOut />
 			</header>
-			<section>{user ? <ChatRoom /> : <SignIn />}</section>
+			<section>{this.state.authenticated ? <ChatRoom /> : <SignIn />}</section>
 		</div>
-	);
+	)
+}
+	
 }
 
 export default App;
