@@ -11,9 +11,21 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 const ChatRoom = () => {
+
+
+	const handleSubmit = ()=>{
+		alert('here')
+	}
+	const handleChange = ()=>{
+		alert('here')
+	}
 	return (
 		<div className = 'chat-room'>
 			<h1>Chat Room</h1>
+			<form onSubmit={handleSubmit}>
+				<input type='text' onChange={handleChange} placeholder='Type a Message' />
+				<button className='enter-btn'>Enter</button>
+			</form>
 		</div>
 	);
 };

@@ -4,8 +4,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import '../App.css'
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+
 
 let auth = firebase.auth();
 

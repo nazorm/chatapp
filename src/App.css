@@ -12,4 +12,20 @@ header{
 }
 .chat-room{
   width: 100%;
+  background-color: midnightblue;
+  height: 100vh;
+  color: white;
+}
+input{
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+input::placeholder{
+  color: blue;
+}
+.enter-btn{
+  border-radius: 5px;
+  padding: 10px;
+  color: blue;
 }
