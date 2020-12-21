@@ -17,9 +17,10 @@ constructor(props){
 userName : auth.currentUser.displayName,
 message : '',
 messageList : [],
+userPhoto : auth.currentUser.photoURL
 	}
 	
-    this.messageRef = firestore.collection('messages');
+   this.messageRef = firestore.collection('messages');
 	//this.messageRef = firebase.database().ref().child('messages');
 	
 
