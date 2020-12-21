@@ -20,7 +20,7 @@ messageList : [],
 	}
 	
     this.messageRef = firestore.collection('messages');
-
+	//this.messageRef = firebase.database().ref().child('messages');
 	
 
 	this.handleSubmit = this.handleSubmit.bind(this)
@@ -44,22 +44,22 @@ handleChange(e){
 
 	 handleSubmit(e){
 		e.preventDefault()
-		console.log(this.state.userName)
 		if(this.state.message){
 			var newMessage = {
 				userName : this.state.userName,
 				userMessage: this.state.message
 			}
 			console.log(newMessage)
+
 		}
 	}
-
+	
 
 
 	render(){
 		return (
 			<div className = 'chat-room'>
-				<h1>Chat Room</h1>
+				<h1>Chats</h1>
 				<Message eachMessage = {this.state.messageList}/>
 				<form onSubmit={this.handleSubmit}>
 					<input type='text' onChange={this.handleChange} placeholder='Type a Message' />
