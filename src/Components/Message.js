@@ -2,26 +2,21 @@ import React from 'react'
 import '../App.css'
 
 
-const Message = ()=>{
+const Message = (props)=>{
+
+    const message = props.eachMessage.map((msg)=>{
+return(
+    <div className='message'>
+    <span className='user-image'></span>
+    <h4 className='user-name'>{msg.userName}</h4>
+    <h4 className='user-message'>{msg.userMessage}</h4>
+    </div>
+)
+    })
 
     return(
         <div className = 'message-box'>
-            <div className='message'>
-            <span className='user-image'></span>
-            <h4 className='user-message'>one</h4>
-            </div>
-            <div className='message'>
-            <span className='user-image'></span>
-            <h4 className='user-message'>one</h4>
-            </div>
-            <div className='message'>
-            <span className='user-image'></span>
-            <h4 className='user-message'>one</h4>
-            </div>
-            <div className='message'>
-            <span className='user-image'></span>
-            <h4 className='user-message'>one</h4>
-            </div>
+         {message}
 
         </div>
     )

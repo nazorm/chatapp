@@ -8,19 +8,22 @@ import config from '../config'
 
 firebase.initializeApp(config);
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+
 
 class ChatRoom extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = {
-			userName: auth.currentUser.displayName,
+			userName: '',
 			message: '',
 			messageList: [],
-			userPhoto: auth.currentUser.photoURL,
+			userPhoto: null
 		};
 
-		this.messageRef = firestore.collection('messages');
+		//this.messageRef = firestore.collection('messages');
+		this.messageRef = firebase.database().ref().child('messages');
+		this.showMessages()
+
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -29,6 +32,8 @@ class ChatRoom extends React.Component {
 	handleChange(e) {
 		this.setState({
 			message: e.target.value,
+			userName: auth.currentUser.displayName,
+			userPhoto: auth.currentUser.photoURL,
 		});
 	}
 
@@ -39,9 +44,21 @@ class ChatRoom extends React.Component {
 				userName: this.state.userName,
 				userMessage: this.state.message,
 			};
-			console.log(newMessage);
+			this.messageRef.push(newMessage);
+      this.setState({ message: '' });
 		}
 	}
+
+	showMessages() {
+		this.messageRef
+		  .limitToLast(10)
+		  .on('value', message => {
+			this.setState({
+				messageList: Object.values(message.val()),
+			});
+		  });
+	  }
+	
 
 	render() {
 		return (

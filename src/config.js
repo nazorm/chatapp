@@ -5,3 +5,4 @@ const config = {
 	messagingSenderId: `${process.env.REACT_APP_MESSAGING_SENDER_ID}`,
 	appId: `${process.env.REACT_APP_ID}`,
 }
+export default config;
