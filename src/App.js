@@ -5,7 +5,6 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-//firebase.initializeApp(config);
 
 const auth = firebase.auth();
 const App = () => {
