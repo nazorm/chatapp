@@ -1,75 +1,60 @@
 import React from 'react';
-import '../App.css'
-import Message from './Message'
-
-import firebase from 'firebase/app';
+import '../App.css';
+import Message from './Message';
+import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
+import config from '../config'
 
+firebase.initializeApp(config);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-//const db = firebase.database()
 
-class ChatRoom extends React.Component{
-constructor(props){
-	super(props)
-	this.state = {
-userName : auth.currentUser.displayName,
-message : '',
-messageList : [],
-userPhoto : auth.currentUser.photoURL
-	}
-	
-   this.messageRef = firestore.collection('messages');
-	//this.messageRef = firebase.database().ref().child('messages');
-	
+class ChatRoom extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userName: auth.currentUser.displayName,
+			message: '',
+			messageList: [],
+			userPhoto: auth.currentUser.photoURL,
+		};
 
-	this.handleSubmit = this.handleSubmit.bind(this)
-	this.handleChange = this.handleChange.bind(this)
-}
+		this.messageRef = firestore.collection('messages');
 
-
-// UNSAFE_componentWillReceiveProps(nextProps){
-// 	if(nextProps.chater){
-// 		this.setState({
-// 			userName : nextProps.chater
-// 		})
-// 	}
-// }
-handleChange(e){
-	this.setState({
-		message : e.target.value,
-	})
-		
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	 handleSubmit(e){
-		e.preventDefault()
-		if(this.state.message){
+	handleChange(e) {
+		this.setState({
+			message: e.target.value,
+		});
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		if (this.state.message) {
 			var newMessage = {
-				userName : this.state.userName,
-				userMessage: this.state.message
-			}
-			console.log(newMessage)
-
+				userName: this.state.userName,
+				userMessage: this.state.message,
+			};
+			console.log(newMessage);
 		}
 	}
-	
 
-
-	render(){
+	render() {
 		return (
-			<div className = 'chat-room'>
+			<div className="chat-room">
 				<h1>Chats</h1>
-				<Message eachMessage = {this.state.messageList}/>
+				<Message eachMessage={this.state.messageList} />
 				<form onSubmit={this.handleSubmit}>
-					<input type='text' onChange={this.handleChange} placeholder='Type a Message' />
-					<button className='enter-btn'>Enter</button>
+					<input type="text" onChange={this.handleChange} placeholder="Type a Message" />
+					<button className="enter-btn">Enter</button>
 				</form>
 			</div>
-		)
+		);
 	}
-	
-};
+}
 
 export default ChatRoom;

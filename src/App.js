@@ -1,54 +1,50 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
-import firebase from 'firebase/app';
+import ChatRoom from './components/ChatRoom';
+import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
+import config from './config';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import SignIn from './components/SignIn';
-import SignOut from './components/SignOut';
-import ChatRoom from './components/ChatRoom';
+firebase.initializeApp(config);
+ console.log(config.apiKey)
+
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
-
-class  App extends React.Component{
-	constructor(){
-		super()
-		this.state ={
-			authenticated: false,
-			user : null,
-			username : ''
-		}
-	}
-
-componentDidMount(){
-	auth.onAuthStateChanged((user)=>{
-		if (user){
-			this.setState({
-				authenticated :true,
-				newUser : user,
-				username : user.displayName
-			})
-		}
-	})
+console.log("here")
+const App = () =>{
+		return (
+			<div className="App">
+				<header>
+					<h3>prochat</h3>
+					<SignOut />
+				</header>
+				<section>{auth.onAuthStateChanged? <ChatRoom /> : <SignIn />}</section>
+			</div>
+		);
 }
 
+const SignIn = () => {
+	firebase.initializeApp(config);
+		const auth = firebase.auth();
+	const signInWithGoogle = () => {
+		const provider = firebase.auth.GoogleAuthProvider();
+		auth.signInWithPopup(provider);
+	};
 
-
-
-render(){
 	return (
-		<div className="App">
-			<header>
-				<h3>prochat</h3>
-				<SignOut />
-			</header>
-			<section>{this.state.authenticated ? <ChatRoom/> : <SignIn />}</section>
+		<div>
+			<button onClick={signInWithGoogle}>Sign in with Google</button>
 		</div>
-	)
-}
-	
-}
+	);
+};
+
+const SignOut = () => {
+	firebase.initializeApp(config);
+		const auth = firebase.auth();
+	return auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>;
+};
+
+
 
 export default App;
