@@ -19,15 +19,19 @@ class ChatRoom extends React.Component {
 			messageList: [],
 			userPhoto: null
 		};
-
+	
 		//this.messageRef = firestore.collection('messages');
-		this.messageRef = firebase.database().ref().child('messages');
-		this.showMessages()
+		
 
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
+
+componentDidMount(){
+	this.messageRef = firebase.database().ref().child('messages');
+	this.showMessages()
+}
 
 	handleChange(e) {
 		this.setState({
@@ -45,7 +49,7 @@ class ChatRoom extends React.Component {
 				userMessage: this.state.message,
 			};
 			this.messageRef.push(newMessage);
-      this.setState({ message: '' });
+	  document.querySelector('.user-text').value = ''
 		}
 	}
 
@@ -66,7 +70,7 @@ class ChatRoom extends React.Component {
 				
 				<Message eachMessage={this.state.messageList} />
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" onChange={this.handleChange} placeholder="Type a Message" />
+					<input type="text" onChange={this.handleChange} placeholder="Type a Message" className='user-text'/>
 					<button className="enter-btn">Enter</button>
 				</form>
 			</div>
