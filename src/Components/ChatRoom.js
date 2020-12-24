@@ -63,7 +63,7 @@ class ChatRoom extends React.Component {
 	render() {
 		return (
 			<div className="chat-room">
-				<h1>Chats</h1>
+				
 				<Message eachMessage={this.state.messageList} />
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" onChange={this.handleChange} placeholder="Type a Message" />
