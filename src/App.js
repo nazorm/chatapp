@@ -12,6 +12,7 @@ const App = () => {
 		<div className="App">
 			<header>
 				<h3>prochat</h3>
+				<h3>Chats</h3>
 				<SignOut />
 			</header>
 			<section>{auth.onAuthStateChanged ? <ChatRoom /> : <SignIn />}</section>
