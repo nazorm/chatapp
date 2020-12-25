@@ -13,12 +13,12 @@ header{
 .chat-room{
   position: relative;
   width: 100%;
+  height: 100vh;
   background-color: midnightblue;
-  color: white;
 }
 form{
   position: absolute;
-  bottom: 0;
+  bottom: 8%;
   width: 100%;
   left: 4%;
 }
@@ -37,8 +37,8 @@ input::placeholder{
   color: blue;
 }
 .message-box{
-  height: 300px;
-  margin: 10px 10px;
+  height: 100px;
+  margin: 0 10px;
   background-color: midnightblue;
 }
 .message{
@@ -46,6 +46,7 @@ input::placeholder{
   border: 1px solid green;
   display: flex;
   margin: 10px 0;
+  color: white;
 }
 .user-image{
   margin: 10px 10px 10px 0;
@@ -57,5 +58,8 @@ input::placeholder{
 }
 .user-message{
   padding: 15px 0 10px;
+}
+.scroller{
+  margin: 20px 0;
 }
 
