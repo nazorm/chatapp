@@ -1,12 +1,9 @@
 import React from 'react';
 import './App.css';
 import ChatRoom from './components/ChatRoom';
-import firebase from 'firebase';
-import 'firebase/firestore';
-import 'firebase/auth';
+import {auth} from './config'
 
 
-const auth = firebase.auth();
 const App = () => {
 	return (
 		<div className="App">
@@ -15,14 +12,14 @@ const App = () => {
 				<h3>Chats</h3>
 				<SignOut />
 			</header>
-			<section>{auth.onAuthStateChanged ? <ChatRoom /> : <SignIn />}</section>
+			<section>{auth.onAuthStateChanged ? <ChatRoom/> :<SignIn/>}</section>
 		</div>
 	);
 };
 
 const SignIn = () => {
 	const signInWithGoogle = () => {
-		const provider = firebase.auth.GoogleAuthProvider();
+		const provider = auth.GoogleAuthProvider();
 		auth.signInWithPopup(provider);
 	};
 
