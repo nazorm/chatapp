@@ -1,13 +1,16 @@
 import React from 'react';
 import '../App.css';
 import Message from './Message';
-import firebase from 'firebase';
-import 'firebase/firestore';
-import 'firebase/auth';
-import config from '../config'
 
-firebase.initializeApp(config);
-const auth = firebase.auth();
+import {auth} from '../config'
+import {db} from '../config'
+
+
+
+
+
+
+
 
 
 class ChatRoom extends React.Component {
@@ -30,7 +33,7 @@ class ChatRoom extends React.Component {
 	}
 
 componentDidMount(){
-	this.messageRef = firebase.database().ref().child('messages');
+	this.messageRef = db.ref().child('messages');
 	this.showMessages()
 	this.scrollToBottom()
 }
@@ -38,8 +41,8 @@ componentDidMount(){
 	handleChange(e) {
 		this.setState({
 			message: e.target.value,
-			userName: auth.currentUser.displayName,
-			userPhoto: auth.currentUser.photoURL,
+			// userName: auth.currentUser.displayName,
+			// userPhoto: auth.currentUser.photoURL,
 		});
 	}
 
@@ -50,6 +53,7 @@ componentDidMount(){
 				userName: this.state.userName,
 				userMessage: this.state.message,
 			};
+			console.log(newMessage)
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
 	  
@@ -58,7 +62,7 @@ componentDidMount(){
 
 	showMessages() {
 		this.messageRef
-		  .limitToLast(10)
+		  .limitToLast(8)
 		  .on('value', message => {
 			this.setState({
 				messageList: Object.values(message.val()),
@@ -81,8 +85,8 @@ componentDidMount(){
 					<button className="enter-btn">Enter</button>
 				</form>
 				
-				<div style={{ float:"left", clear: "both" }}
-             ref={(el) => { this.messagesEnd = el; }}>
+				<div
+             ref={(el) => { this.messagesEnd = el; }} className = 'scroller'>
         </div>
 
 
