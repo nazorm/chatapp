@@ -14,12 +14,11 @@ header{
   position: relative;
   width: 100%;
   background-color: midnightblue;
-  height: 93vh;
   color: white;
 }
 form{
   position: absolute;
-  bottom: 2%;
+  bottom: 0;
   width: 100%;
   left: 4%;
 }
@@ -38,7 +37,7 @@ input::placeholder{
   color: blue;
 }
 .message-box{
-  height: 500px;
+  height: 300px;
   margin: 10px 10px;
   background-color: midnightblue;
 }
