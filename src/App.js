@@ -1,25 +1,51 @@
 import React from 'react';
 import './App.css';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import 'firebase/auth';
 import ChatRoom from './components/ChatRoom';
-import {auth} from './config'
+import config from './config'
 
+firebase.initializeApp(config);
+export const auth = firebase.auth();
+export const db = firebase.database();
+class App extends React.Component{
+	constructor(){
+		super()
+		this.state = {
+			authenticated : false,
 
-const App = () => {
-	return (
-		<div className="App">
-			<header>
-				<h3>prochat</h3>
-				<h3>Chats</h3>
-				<SignOut />
-			</header>
-			<section>{auth.onAuthStateChanged ? <ChatRoom/> :<SignIn/>}</section>
-		</div>
-	);
+		}
+	}
+componentDidMount(){
+	auth.onAuthStateChanged((user)=>{
+		if(user){
+			this.setState({
+				authenticated : true
+			})
+		}
+	})
+}
+
+	render(){
+		return (
+			<div className="App">
+				<header>
+					<h3>prochat</h3>
+					<SignOut />
+					
+				</header>
+				<section>{ this.state.authenticated ? <ChatRoom/> :<SignIn/>}</section>
+			</div>
+		)
+	}
+	
 };
+export default App;
 
 const SignIn = () => {
 	const signInWithGoogle = () => {
-		const provider = auth.GoogleAuthProvider();
+		const provider = new firebase.auth.GoogleAuthProvider();
 		auth.signInWithPopup(provider);
 	};
 
@@ -30,8 +56,14 @@ const SignIn = () => {
 	);
 };
 
-const SignOut = () => {
-	return auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>;
-};
 
-export default App;
+function SignOut() {
+	return auth.currentUser && (
+	  <div>
+		<button onClick={() => auth.signOut()} className='signout-btn'>Sign Out</button>
+	  </div>
+	)
+  }
+  
+
+
