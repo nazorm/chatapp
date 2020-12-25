@@ -1,9 +1,9 @@
 import React from 'react';
 import '../App.css';
-import Message from './Message';
 
-import {auth} from '../config'
-import {db} from '../config'
+import Message from './Message';
+import {db} from '../App'
+import {auth} from '../App'
 
 
 
@@ -41,8 +41,8 @@ componentDidMount(){
 	handleChange(e) {
 		this.setState({
 			message: e.target.value,
-			// userName: auth.currentUser.displayName,
-			// userPhoto: auth.currentUser.photoURL,
+			userName: auth.currentUser.displayName,
+			 userPhoto: auth.currentUser.photoURL,
 		});
 	}
 
@@ -53,7 +53,6 @@ componentDidMount(){
 				userName: this.state.userName,
 				userMessage: this.state.message,
 			};
-			console.log(newMessage)
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
 	  
@@ -62,7 +61,7 @@ componentDidMount(){
 
 	showMessages() {
 		this.messageRef
-		  .limitToLast(8)
+		  .limitToLast(7)
 		  .on('value', message => {
 			this.setState({
 				messageList: Object.values(message.val()),
