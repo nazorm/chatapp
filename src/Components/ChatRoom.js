@@ -26,11 +26,13 @@ class ChatRoom extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.scrollToBottom = this.scrollToBottom.bind(this);
 	}
 
 componentDidMount(){
 	this.messageRef = firebase.database().ref().child('messages');
 	this.showMessages()
+	this.scrollToBottom()
 }
 
 	handleChange(e) {
@@ -50,6 +52,7 @@ componentDidMount(){
 			};
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
+	  
 		}
 	}
 
@@ -61,8 +64,12 @@ componentDidMount(){
 				messageList: Object.values(message.val()),
 			});
 		  });
+		  
 	  }
-	
+        scrollToBottom(){
+			this.messagesEnd.scrollIntoView({behavior: 'smooth'})
+		}	
+
 
 	render() {
 		return (
@@ -73,6 +80,12 @@ componentDidMount(){
 					<input type="text" onChange={this.handleChange} placeholder="Type a Message" className='user-text'/>
 					<button className="enter-btn">Enter</button>
 				</form>
+				
+				<div style={{ float:"left", clear: "both" }}
+             ref={(el) => { this.messagesEnd = el; }}>
+        </div>
+
+
 			</div>
 		);
 	}
