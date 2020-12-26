@@ -54,7 +54,7 @@ input::placeholder{
 }
 .user-image{
   margin: 10px 10px 10px 0;
-  border: 1px solid yellow;
+  border: transparent;
    width: 35px;
    height: 40px;
    border-radius:47%;
