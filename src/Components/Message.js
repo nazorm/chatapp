@@ -7,8 +7,7 @@ const Message = (props)=>{
     const message = props.eachMessage.map((msg, id)=>{
 return(
     <div className='message' key={id}>
-    <span className='user-image'>{msg.userPhoto}</span>
-    <h4 className='user-name'>{msg.userName}</h4>
+ <img src ={msg.userPhoto} className = 'user-image' alt = 'userphoto'/>
     <h4 className='user-message'>{msg.userMessage}</h4>
     </div>
 )
