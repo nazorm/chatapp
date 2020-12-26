@@ -52,6 +52,7 @@ componentDidMount(){
 			var newMessage = {
 				userName: this.state.userName,
 				userMessage: this.state.message,
+				userPhoto: this.state.userPhoto
 			};
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
