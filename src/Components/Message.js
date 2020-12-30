@@ -8,8 +8,8 @@ const Message = (props)=>{
 return(
     <div className='message' key={id}>
  <img src ={msg.userPhoto} className = 'user-image' alt = 'userphoto'/>
-    <h4 className='user-message'>{msg.userMessage}</h4>
-    {props.sender ? 'sent' : 'recieved'}
+    <h4 className={props.sender ? 'sent' : 'recieved'}>{msg.userMessage}</h4>
+    <span></span>
     </div>
 )
     })
