@@ -21,7 +21,8 @@ class ChatRoom extends React.Component {
 			message: '',
 			messageList: [],
 			userPhoto: null,
-			userID : ''
+			userID : '',
+			ifSent : true,
 		};
 	
 		//this.messageRef = firestore.collection('messages');
@@ -44,7 +45,7 @@ componentDidMount(){
 			message: e.target.value,
 			userName: auth.currentUser.displayName,
 			 userPhoto: auth.currentUser.photoURL,
-			 userID : auth.currentUser.uid,
+			 userId : auth.currentUser.uid,
 
 		});
 	}
@@ -59,8 +60,13 @@ componentDidMount(){
 			};
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
-	  
+	  if (this.state.userId === auth.currentUser.uid){
+		this.setState({
+			ifSent : false
+		})
+	}
 		}
+		
 	}
 
 	showMessages() {
@@ -82,7 +88,7 @@ componentDidMount(){
 		return (
 			<div className="chat-room">
 				
-				<Message eachMessage={this.state.messageList} />
+				<Message eachMessage={this.state.messageList} sender = {this.state.ifSent} />
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" onChange={this.handleChange} placeholder="Type a Message" className='user-text'/>
 					<button className="enter-btn">Enter</button>
