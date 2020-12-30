@@ -47,7 +47,6 @@ input::placeholder{
 }
 .message{
   width: 100%;
-  border: 1px solid green;
   display: flex;
   margin: 10px 0;
   color: white;
@@ -61,7 +60,13 @@ input::placeholder{
    border-radius:47%;
  
 }
-.user-message{
+.sent{
+  padding: 15px 0 10px;
+  background-color: green;
+  float: left;
+}
+.recieved{
+  background-color: blue;
   padding: 15px 0 10px;
 }
 .scroller{
