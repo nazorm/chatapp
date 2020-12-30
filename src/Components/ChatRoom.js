@@ -22,7 +22,7 @@ class ChatRoom extends React.Component {
 			messageList: [],
 			userPhoto: null,
 			userID : '',
-			ifSent : true,
+			ifSent : false,
 		};
 	
 		//this.messageRef = firestore.collection('messages');
@@ -60,13 +60,13 @@ componentDidMount(){
 			};
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
-	  if (this.state.userId === auth.currentUser.uid){
-		this.setState({
-			ifSent : false
-		})
-	}
+	 
 		}
-		
+		if (this.state.userId === auth.currentUser.uid){
+			this.setState({
+				ifSent : true
+			})
+		}
 	}
 
 	showMessages() {
