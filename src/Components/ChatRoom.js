@@ -20,7 +20,8 @@ class ChatRoom extends React.Component {
 			userName: '',
 			message: '',
 			messageList: [],
-			userPhoto: null
+			userPhoto: null,
+			userID : ''
 		};
 	
 		//this.messageRef = firestore.collection('messages');
@@ -43,6 +44,8 @@ componentDidMount(){
 			message: e.target.value,
 			userName: auth.currentUser.displayName,
 			 userPhoto: auth.currentUser.photoURL,
+			 userID : auth.currentUser.uid,
+
 		});
 	}
 
