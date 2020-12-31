@@ -14,6 +14,7 @@ class App extends React.Component{
 		super()
 		this.state = {
 			authenticated : false,
+			userId : '',
 
 		}
 	}
@@ -21,7 +22,8 @@ componentDidMount(){
 	auth.onAuthStateChanged((user)=>{
 		if(user){
 			this.setState({
-				authenticated : true
+				authenticated : true,
+				userId : auth.currentUser.uid
 			})
 		}
 	})
@@ -35,7 +37,7 @@ componentDidMount(){
 					<SignOut />
 					
 				</header>
-				<section>{ this.state.authenticated ? <ChatRoom/> :<SignIn/>}</section>
+				<section>{ this.state.authenticated ? <ChatRoom id = {this.state.userId}/> :<SignIn/>}</section>
 			</div>
 		)
 	}
