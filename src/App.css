@@ -44,14 +44,13 @@ input::placeholder{
   height: 100px;
   margin: 0 10px ;
   background-color: grey;
+  position: relative;
 }
 .message-sent{
   width: 100%;
   display: flex;
-  /* flex-direction: row-reverse; */
-  justify-content: flex-end;
-  
-  margin: 10px 0 0;
+  flex-direction: row-reverse;
+  left: -15%;
   color: white;
   
 }
@@ -59,11 +58,10 @@ input::placeholder{
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  margin: 0 0 10px;
   color: white;
 }
 .user-image{
-  margin: 10px 10px 10px 0;
+  margin: 10px 0 10px;
   border: transparent;
    width: 35px;
    height: 40px;
@@ -71,11 +69,10 @@ input::placeholder{
  
 }
 .message{
-  padding: 0;
-  background-color: green;
   align-self: center;
-  padding: 2px 5px;
+  padding: 5px 10px;
   border-radius: 8px;
+  margin: 0 10px;
 }
 
 .scroller{
