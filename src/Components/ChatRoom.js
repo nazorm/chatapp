@@ -56,9 +56,10 @@ componentDidMount(){
 			var newMessage = {
 				userName: this.state.userName,
 				userMessage: this.state.message,
-				userPhoto: this.state.userPhoto
+				userPhoto: this.state.userPhoto,
 			};
 			this.messageRef.push(newMessage);
+			console.log(this.messageRef)
 	  document.querySelector('.user-text').value = ''
 	  if (this.state.senderId === this.props.id){
 		this.setState({
