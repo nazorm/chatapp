@@ -45,12 +45,22 @@ input::placeholder{
   margin: 0 10px ;
   background-color: grey;
 }
-.message-container{
+.message-sent{
   width: 100%;
   display: flex;
-  margin: 0 0 10px;
+  /* flex-direction: row-reverse; */
+  justify-content: flex-end;
+  
+  margin: 10px 0 0;
   color: white;
   
+}
+.message-recieved{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+  color: white;
 }
 .user-image{
   margin: 10px 10px 10px 0;
@@ -61,8 +71,11 @@ input::placeholder{
  
 }
 .message{
-  padding: 15px 0 10px;
+  padding: 0;
   background-color: green;
+  align-self: center;
+  padding: 2px 5px;
+  border-radius: 8px;
 }
 
 .scroller{
