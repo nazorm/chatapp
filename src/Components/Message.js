@@ -6,10 +6,10 @@ const Message = (props)=>{
 
     const message = props.eachMessage.map((msg, id)=>{
 return(
-    <div className='message' key={id}>
+    <div className='message-container' key={id} style = {{justifyContent :props.sender ? 'flex-end' : 'flex-start' }}>
  <img src ={msg.userPhoto} className = 'user-image' alt = 'userphoto'/>
-    <h4 className={props.sender ? 'sent' : 'recieved'}>{msg.userMessage}</h4>
-    <span></span>
+    <h4 className= 'message' style={{backgroundColor: props.sender ? 'green' : 'grey'}}>{msg.userMessage}</h4>
+    
     </div>
 )
     })
