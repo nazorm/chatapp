@@ -21,7 +21,7 @@ class ChatRoom extends React.Component {
 			message: '',
 			messageList: [],
 			userPhoto: null,
-			userID : '',
+			senderId : '',
 			ifSent : false,
 		};
 	
@@ -45,7 +45,7 @@ componentDidMount(){
 			message: e.target.value,
 			userName: auth.currentUser.displayName,
 			 userPhoto: auth.currentUser.photoURL,
-			 userId : auth.currentUser.uid,
+			 senderId : auth.currentUser.uid,
 
 		});
 	}
@@ -60,13 +60,13 @@ componentDidMount(){
 			};
 			this.messageRef.push(newMessage);
 	  document.querySelector('.user-text').value = ''
-	 
+	  if (this.state.senderId === this.props.id){
+		this.setState({
+			ifSent : true
+		})
+	}
 		}
-		if (this.state.userId === auth.currentUser.uid){
-			this.setState({
-				ifSent : true
-			})
-		}
+	
 	}
 
 	showMessages() {
