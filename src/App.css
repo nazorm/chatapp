@@ -63,9 +63,9 @@ input::placeholder{
 .user-image{
   margin: 10px 0 10px;
   border: transparent;
-   width: 35px;
+   width: 40px;
    height: 40px;
-   border-radius:47%;
+   border-radius:50%;
  
 }
 .message{
